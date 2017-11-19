@@ -46,7 +46,7 @@ var Furyuser = {
 	node:{},
 	username:"",
 	password:"",
-    login: function() {				
+    login: function(callback) {				
 		document.Furyuser=Furyuser;
 		var obj = {};		;		
 		var account_obj=new fury.StromDAOBONode.Account(Furyuser.username,Furyuser.password);				
@@ -61,7 +61,7 @@ var Furyuser = {
 							node = new fury.StromDAOBONode.Node({external_id:username,privateKey:pk,testMode:true,rpc:fury.furyrpc,abilocation:fury.furyabi});
 							Furyuser.node=node;	
 							fury.fury=obj;
-							if(typeof callback!="undefined") callback(obj); else fury.fury=obj;
+							if(typeof callback!="undefined") callback(Furyuser);
 							return this;
 						} else {
 							node.stringstorage(tx).then(function(ss) {
@@ -72,7 +72,7 @@ var Furyuser = {
 												node = new fury.StromDAOBONode.Node({external_id:Furyuser.username,privateKey:pk,testMode:true,rpc:fury.furyrpc,abilocation:fury.furyabi});
 												Furyuser.node=node;	
 												fury.fury=obj;
-												if(typeof callback!="undefined") callback(obj); else fury.fury=obj;
+												if(typeof callback!="undefined") callback(Furyuser);
 												return this;
 											} else {
 												node.stringstorage(tx).then(function(ss) {
@@ -85,10 +85,7 @@ var Furyuser = {
 																		Furyuser.node=node;									
 																		Furyuser.account.rsaPrivate=rsa_priv;
 																		Furyuser.account.rsaPublic=rsa_pub;																		
-																		if(typeof callback!="undefined") callback(obj); else fury.fury=obj;
-																		var main = require("./view.main.js");
-																		var root = document.getElementById("app");
-																		m.mount(root, main);
+																		if(typeof callback!="undefined") callback(Furyuser);																		
 																		return this;
 																	});
 																});
@@ -110,7 +107,7 @@ var Furyuser = {
 
 module.exports = Furyuser
 
-},{"./view.main.js":323,"mithril":184,"stromdao-businessobject":299}],3:[function(require,module,exports){
+},{"mithril":184,"stromdao-businessobject":299}],3:[function(require,module,exports){
 "use strict";
 
 (function(root) {
@@ -64812,7 +64809,11 @@ module.exports = {
          return m("form",{
                 onsubmit: function(e) {
                     e.preventDefault()
-                    Furyuser.login()
+                    Furyuser.login(function() {
+						var main = require("./view.main.js");
+						var root = document.getElementById("app");
+						m.mount(root, main);							
+					})
                 }
             }, [
 			m("h3", "Fury WebUser Login"),
@@ -64832,7 +64833,7 @@ module.exports = {
     }
 }
 
-},{"./model.furyuser.js":2,"mithril":184}],323:[function(require,module,exports){
+},{"./model.furyuser.js":2,"./view.main.js":323,"mithril":184}],323:[function(require,module,exports){
 var m = require("mithril")
 var Furyuser = require("./model.furyuser.js")
 

@@ -12,7 +12,7 @@ var Furyuser = {
 	node:{},
 	username:"",
 	password:"",
-    login: function() {				
+    login: function(callback) {				
 		document.Furyuser=Furyuser;
 		var obj = {};		;		
 		var account_obj=new fury.StromDAOBONode.Account(Furyuser.username,Furyuser.password);				
@@ -27,7 +27,7 @@ var Furyuser = {
 							node = new fury.StromDAOBONode.Node({external_id:username,privateKey:pk,testMode:true,rpc:fury.furyrpc,abilocation:fury.furyabi});
 							Furyuser.node=node;	
 							fury.fury=obj;
-							if(typeof callback!="undefined") callback(obj); else fury.fury=obj;
+							if(typeof callback!="undefined") callback(Furyuser);
 							return this;
 						} else {
 							node.stringstorage(tx).then(function(ss) {
@@ -38,7 +38,7 @@ var Furyuser = {
 												node = new fury.StromDAOBONode.Node({external_id:Furyuser.username,privateKey:pk,testMode:true,rpc:fury.furyrpc,abilocation:fury.furyabi});
 												Furyuser.node=node;	
 												fury.fury=obj;
-												if(typeof callback!="undefined") callback(obj); else fury.fury=obj;
+												if(typeof callback!="undefined") callback(Furyuser);
 												return this;
 											} else {
 												node.stringstorage(tx).then(function(ss) {
@@ -51,10 +51,7 @@ var Furyuser = {
 																		Furyuser.node=node;									
 																		Furyuser.account.rsaPrivate=rsa_priv;
 																		Furyuser.account.rsaPublic=rsa_pub;																		
-																		if(typeof callback!="undefined") callback(obj); else fury.fury=obj;
-																		var main = require("./view.main.js");
-																		var root = document.getElementById("app");
-																		m.mount(root, main);
+																		if(typeof callback!="undefined") callback(Furyuser);																		
 																		return this;
 																	});
 																});

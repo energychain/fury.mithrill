@@ -6,7 +6,11 @@ module.exports = {
          return m("form",{
                 onsubmit: function(e) {
                     e.preventDefault()
-                    Furyuser.login()
+                    Furyuser.login(function() {
+						var main = require("./view.main.js");
+						var root = document.getElementById("app");
+						m.mount(root, main);							
+					})
                 }
             }, [
 			m("h3", "Fury WebUser Login"),
