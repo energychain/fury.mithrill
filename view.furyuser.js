@@ -7,9 +7,7 @@ module.exports = {
                 onsubmit: function(e) {
                     e.preventDefault()
                     Furyuser.login(function() {
-						var main = require("./view.main.js");
-						var root = document.getElementById("app");
-						m.mount(root, main);							
+							location.href="#!/main";						
 					})
                 }
             }, [

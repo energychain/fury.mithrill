@@ -64810,9 +64810,7 @@ module.exports = {
                 onsubmit: function(e) {
                     e.preventDefault()
                     Furyuser.login(function() {
-						var main = require("./view.main.js");
-						var root = document.getElementById("app");
-						m.mount(root, main);							
+							location.href="#!/main";						
 					})
                 }
             }, [
@@ -64833,7 +64831,7 @@ module.exports = {
     }
 }
 
-},{"./model.furyuser.js":2,"./view.main.js":323,"mithril":184}],323:[function(require,module,exports){
+},{"./model.furyuser.js":2,"mithril":184}],323:[function(require,module,exports){
 var m = require("mithril")
 var Furyuser = require("./model.furyuser.js")
 
