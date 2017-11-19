@@ -46,7 +46,9 @@ var Furyuser = {
 	node:{},
 	username:"",
 	password:"",
-    login: function(callback) {				
+	requiresLogin:'',
+    login: function(callback) {		
+		
 		document.Furyuser=Furyuser;
 		var obj = {};		;		
 		var account_obj=new fury.StromDAOBONode.Account(Furyuser.username,Furyuser.password);				
@@ -64809,9 +64811,13 @@ module.exports = {
          return m("form",{
                 onsubmit: function(e) {
                     e.preventDefault()
+                    Furyuser.requiresLogin="[disabled='disabled']";	
+                    m.redraw();
                     Furyuser.login(function() {
+							Furyuser.requiresLogin="";	
+							m.redraw();
 							location.href="#!/main";						
-					})
+					});
                 }
             }, [
 			m("h3", "Fury WebUser Login"),
@@ -64825,8 +64831,9 @@ module.exports = {
                 oninput: m.withAttr("value", function(value) {Furyuser.password = value}),
                 value: Furyuser.password
             }),
-            m("hr"),
-            m("button.button[type=submit][class=form-control btn btn-danger]", "Login"),
+            m("hr"),         
+			m("button.button[type=submit][class=form-control btn btn-primary]"+Furyuser.requiresLogin, "Login"),
+			
         ])
     }
 }

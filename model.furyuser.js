@@ -12,7 +12,9 @@ var Furyuser = {
 	node:{},
 	username:"",
 	password:"",
-    login: function(callback) {				
+	requiresLogin:'',
+    login: function(callback) {		
+		
 		document.Furyuser=Furyuser;
 		var obj = {};		;		
 		var account_obj=new fury.StromDAOBONode.Account(Furyuser.username,Furyuser.password);				
