@@ -252,8 +252,7 @@ var Stromkonto_model = function(sko_address,req_address) {
 	this.baseHaben="-";
 	this.baseSoll="-";
 	
-    this.oninit=function(sko_address,req_address,callback) {	
-		console.log("oninit(",sko_address,req_address,")");
+    this.oninit=function(sko_address,req_address,callback) {			
 		if(typeof req_address=="undefined")  req_address=Furyuser.node.wallet.address;
 		if(typeof sko_address=="undefined") sko_address=Furyuser.node.blg;				
 		Furyuser.node.stromkonto(sko_address).then(function(sko) {					
@@ -65214,7 +65213,7 @@ Panel.prototype.Stromkonto=function(address,sko_address) {
 	
 	
 	me.stromkonto.oninit(this.sko_address,this.req_address,function(stromkonto) {
-		me.setHeading("Energy Ledger "+stromkonto.sko_address+" "+stromkonto.req_address);	
+		me.setHeading("Energy Ledger "+stromkonto.req_address+"@"+stromkonto.sko_address);	
 
 		var table_balance=m("table[class=table table-hover]",m("tbody",[							
 				m("tr",[ m("td[scope=row]","Soll"),m("td[style=text-align:right]",document.toEURString(stromkonto.balanceSoll))]),
