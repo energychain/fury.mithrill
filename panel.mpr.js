@@ -13,7 +13,7 @@ Panel.prototype.MPR=function(address) {
 		me.MPR_model.oninit(function(MPR_model) {
 			me.setHeading("Meter Point Reading "+MPR_model.address);	
 			var table=m("table[class=table table-condensed]",[							
-					m("tr",[ m("td","Reading"),m("td",MPR_model.power)]),
+					m("tr",[ m("td","Reading"),m("td",document.toKWHString(MPR_model.power))]),
 					m("tr",[ m("td","Time"),m("td",new Date(MPR_model.time).toLocaleString())])
 				]);
 			var body=[];
@@ -26,7 +26,7 @@ Panel.prototype.MPR=function(address) {
 								me.MPR_model.storeReading();
 							}						
 						},[  
-							m("label", "Manuel Reading"),
+							m("label", "Manuel Reading (in Wh)"),
 							m("input.input[type=text][placeholder=Reading][class=form-control]", {
 								oninput: m.withAttr("value", function(value) {MPR_model.power = value}),
 								value: MPR_model.power

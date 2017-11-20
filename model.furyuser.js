@@ -28,7 +28,7 @@ var Furyuser = {
 						if(tx=="0x0000000000000000000000000000000000000000") {
 							if(typeof callback!="undefined") callback(Furyuser);
 							return this;
-						} else {
+						} else {							
 							node.stringstorage(tx).then(function(ss) {
 								ss.str().then(function(str) {
 									account_obj.decrypt(str).then(function(pk) {																				
@@ -37,14 +37,18 @@ var Furyuser = {
 												node = new fury.StromDAOBONode.Node({external_id:Furyuser.username,privateKey:pk,testMode:true,rpc:fury.furyrpc,abilocation:fury.furyabi});	
 												Furyuser.node=node;									
 												Furyuser.account.rsaPrivate=account_obj.RSAPrivateKey;
-												Furyuser.account.rsaPublic=account_obj.RSAPublicKey;																		
-												if(typeof callback!="undefined") callback(Furyuser);																		
-												return this;
+												Furyuser.account.rsaPublic=account_obj.RSAPublicKey;	
+												rl.relations(node.wallet.address,41).then(function(tx) {
+													Furyuser.node.blg=tx;
+													if(typeof callback!="undefined") callback(Furyuser);																		
+													return this;				
+												});												
 											});
 										});																		
 									});
 								});
 							});
+							
 						}
 					});
 				});				

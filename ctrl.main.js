@@ -3,6 +3,7 @@ var Panel = require("./ctrl.panel.js");
 var Furyuserinfo=require("./panel.furyuserinfo.js");
 var Nodeinfo=require("./panel.nodeinfo.js");
 var MPR=require("./panel.mpr.js");
+var Stromkonto=require("./panel.stromkonto.js");
 
 module.exports = {
 	
@@ -10,6 +11,16 @@ module.exports = {
 		var root = document.body;	
 	
 		main_view=require("./view.ui_container.js");
+		
+		var p_stromkonto = new Stromkonto();
+		p_stromkonto.Stromkonto();
+		main_view.addPanel(p_stromkonto);
+		
+		
+		var p_stromkonto2 = new Stromkonto();
+		p_stromkonto2.Stromkonto("0x8e063ee7bec8328710ceeb0d7160304af130352c");
+		main_view.addPanel(p_stromkonto2);
+		
 		
 		var p_mpr = new MPR();
 		p_mpr.MPR();

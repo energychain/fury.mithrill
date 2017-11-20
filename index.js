@@ -17,6 +17,14 @@
 */
 
 
+document.toEURString=function(value) {
+	return (value/10000000).toLocaleString(undefined, { minimumFractionDigits:2, maximumFractionDigits:2 })+" €";
+}
+
+document.toKWHString=function(value) {
+	return (value/1000).toLocaleString(undefined, { minimumFractionDigits:3, maximumFractionDigits:3 })+" KWh";
+}
+
 var root = document.getElementById("app");
 m.mount(root,require("./view.furyuserlogin.js"));
 
