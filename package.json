@@ -25,6 +25,6 @@
   "homepage": "https://github.com/energychain/fury.mithril#readme",
   "dependencies": {
     "mithril": "^1.1.5",
-    "stromdao-businessobject": "^0.5.20"
+    "stromdao-businessobject": "^0.5.21"
   }
 }

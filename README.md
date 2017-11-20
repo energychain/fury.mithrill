@@ -1,2 +1,2 @@
 # fury.mithrill
-Fury Network Extension for Mithrill
+Fury Network Extension for Mithril JS

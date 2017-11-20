@@ -9,25 +9,32 @@ module.exports = {
                     Furyuser.requiresLogin="[disabled='disabled']";	
                     m.redraw();
                     Furyuser.login(function() {
-							Furyuser.requiresLogin="";	
-							m.redraw();
-							location.href="#!/main";						
+						Furyuser.requiresLogin="";	
+						m.redraw();
+						
+						if(typeof Furyuser.node.wallet != "undefined") {							
+							var ctrl = require("./ctrl.main.js");
+							ctrl.main();
+													
+						} else {
+							console.warn("No Wallet associated!");
+						}
 					});
                 }
             }, [
 			m("h3", "Fury WebUser Login"),
-            m("label.label", "Username"),
+            m("label", "Username"),
             m("input.input[type=text][placeholder=WebUser Name][class=form-control]", {
                 oninput: m.withAttr("value", function(value) {Furyuser.username = value}),
                 value: Furyuser.username
             }),
-            m("label.label", "Password"),
+            m("label", "Password"),
             m("input.input[type=Password][placeholder=WebUser Password][class=form-control]",{
                 oninput: m.withAttr("value", function(value) {Furyuser.password = value}),
                 value: Furyuser.password
             }),
             m("hr"),         
-			m("button.button[type=submit][class=form-control btn btn-primary]"+Furyuser.requiresLogin, "Login"),
+			m("button.button[type=submit][class=form-control btn btn-default]"+Furyuser.requiresLogin, "Login"),
 			
         ])
     }

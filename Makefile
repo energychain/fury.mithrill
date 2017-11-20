@@ -6,7 +6,7 @@
 PROJECT = "Fury Mithrill Extension"
 
 
-all: commit
+all: browserify
 
 browserify: ;browserify index.js > dist/furyMithril.js;
 

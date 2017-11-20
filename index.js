@@ -17,15 +17,11 @@
 */
 
 
-var login = require("./view.furyuser.js");
-var main = require("./view.main.js");
-
 var root = document.getElementById("app");
+m.mount(root,require("./view.furyuserlogin.js"));
 
-m.route(root, "/login", {
-    "/login": login,
-    "/main": main,
-})
+
+
 
 
 
