@@ -16,7 +16,17 @@ var Stromkonto_model = function(sko_address,req_address) {
 	this.balanceSoll="-";
 	this.baseHaben="-";
 	this.baseSoll="-";
-	
+	this.onhistory=function(sko_address,req_address,callback) {	
+		Furyuser.node.stromkonto(sko_address).then(function(sko) {	
+			sko.history(req_address,20000).then(function(history) {
+				if(typeof callback != "undefined")  { 
+					callback({req_address:req_address,
+							sko_address:sko_address,
+							history:history});
+				}
+			});
+		});
+	}
     this.oninit=function(sko_address,req_address,callback) {			
 		if(typeof req_address=="undefined")  req_address=Furyuser.node.wallet.address;
 		if(typeof sko_address=="undefined") sko_address=Furyuser.node.blg;				

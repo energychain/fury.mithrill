@@ -15,8 +15,8 @@ Panel.prototype.Stromkonto=function(address,sko_address) {
 	
 	
 	me.stromkonto.oninit(this.sko_address,this.req_address,function(stromkonto) {
-		me.setHeading("Energy Ledger "+stromkonto.req_address+"@"+stromkonto.sko_address);	
-
+		me.setHeading("Energy Ledger ");	
+		me.setFooter("Balancing account:"+document.resolveAddress(stromkonto.req_address)+"@"+document.resolveAddress(stromkonto.sko_address));
 		var table_balance=m("table[class=table table-hover]",m("tbody",[							
 				m("tr",[ m("td[scope=row]","Soll"),m("td[style=text-align:right]",document.toEURString(stromkonto.balanceSoll))]),
 				m("tr",[ m("td[scope=row]","Haben"),m("td[style=text-align:right]",document.toEURString(stromkonto.balanceHaben))]),

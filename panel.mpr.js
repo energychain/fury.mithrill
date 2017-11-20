@@ -11,7 +11,7 @@ Panel.prototype.MPR=function(address) {
 	
 	var update=function() {
 		me.MPR_model.oninit(function(MPR_model) {
-			me.setHeading("Meter Point Reading "+MPR_model.address);	
+			me.setHeading("Meter Point Reading "+document.resolveAddress(MPR_model.address));	
 			var table=m("table[class=table table-condensed]",[							
 					m("tr",[ m("td","Reading"),m("td",document.toKWHString(MPR_model.power))]),
 					m("tr",[ m("td","Time"),m("td",new Date(MPR_model.time).toLocaleString())])

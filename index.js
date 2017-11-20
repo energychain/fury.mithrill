@@ -15,7 +15,15 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * Lesser General Public License for more details.
 */
-
+document.resolveAddress=function(address) {
+	name=address;
+	if(window.localStorage.getItem("address_"+address.toLowerCase())!=null) {
+			name=window.localStorage.getItem("address_"+address.toLowerCase());
+	}
+	if(name.length<1) name=address;
+	if(name.length>17) name=name.substr(0,17)+"...";
+	return name;
+}
 
 document.toEURString=function(value) {
 	return (value/10000000).toLocaleString(undefined, { minimumFractionDigits:2, maximumFractionDigits:2 })+" €";

@@ -4,6 +4,7 @@ var Furyuserinfo=require("./panel.furyuserinfo.js");
 var Nodeinfo=require("./panel.nodeinfo.js");
 var MPR=require("./panel.mpr.js");
 var Stromkonto=require("./panel.stromkonto.js");
+var Stromkonto_history=require("./panel.stromkonto_history.js");
 
 module.exports = {
 	
@@ -12,6 +13,11 @@ module.exports = {
 	
 		main_view=require("./view.ui_container.js");
 		
+		var p_stromkonto_history = new Stromkonto_history();
+		p_stromkonto_history.Stromkonto_history();
+		main_view.addPanel(p_stromkonto_history);
+
+
 		var p_stromkonto = new Stromkonto();
 		p_stromkonto.Stromkonto();
 		main_view.addPanel(p_stromkonto);

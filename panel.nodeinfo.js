@@ -7,7 +7,7 @@ Panel.prototype.Nodeinfo=function() {
 	this.setHeading("Node Account");
 	
 	this.setBody( m("div",[		
-		m("h3",Furyuser.node.wallet.address),
+		m("h3",document.resolveAddress(Furyuser.node.wallet.address)),
 		m("p",[
 			m("h4","RSA Public"),
 			m("pre",Furyuser.node.RSAPublicKey)
